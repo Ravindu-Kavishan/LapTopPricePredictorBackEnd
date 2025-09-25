@@ -9,7 +9,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5174"],
+    allow_origins=["*"],  # allow all origins
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -85,7 +85,6 @@ async def predict_laptop(data: LaptopData):
         # Predict
         prediction = loaded_model.predict(Xvalue.values)
 
-        print(f"Prediction: {prediction[0]}")
 
         return {
             "prediction": float(prediction[0]),
